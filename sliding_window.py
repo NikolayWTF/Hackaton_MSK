@@ -1,3 +1,4 @@
+import math
 import imutils
 import keras
 import numpy as np
@@ -124,16 +125,18 @@ X = []
 Y = []
 while i < L:
 	if x_good[i] > 0:
-		NAME.append(str(i) + ".jpg")
+		a = math.floor(i/3)
+		NAME.append(str(a) + ".jpg")
 		X.append(str(int((first_x_good[i] + x_good[i]) * 4.288)))
 		Y.append(str(int((first_y_good[i] + y_good[i]) * 2.848)))
-		print (str(i) + ".jpg", str(int((first_x_good[i] + x_good[i]) * 4.288)), str(int((first_y_good[i] + y_good[i]) * 2.848)))
 	i += 1
 
 with open("Forest_Group.csv", mode="w", encoding='utf-8') as w_file:
-    file_writer = csv.writer(w_file, delimiter = ",", lineterminator="\r")
-    file_writer.writerow(NAME)
-    file_writer.writerow(X)
-    file_writer.writerow(Y)
+	file_writer = csv.writer(w_file, delimiter = ",", lineterminator="\r")
+	file_writer.writerow(["name", "x", "y"])
+	i = 0
+	while i < len(NAME):
+		file_writer.writerow(NAME[i], X[i], Y[i])
+		i += 1
 
 

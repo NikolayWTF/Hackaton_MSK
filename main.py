@@ -71,8 +71,6 @@ def clicked_save():
                 text_file.write(images)
                 text_file.write(" ")
 
-    #if text == 3:
-
 
 window = Tk()
 window.title("In search of bears...")
